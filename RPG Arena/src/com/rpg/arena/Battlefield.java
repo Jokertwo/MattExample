@@ -26,12 +26,12 @@ public class Battlefield {
         if(round == false){
             int remainingHealth = enemyCharacter.characterDefend(playerCharacter.characterAttack());
             round = !round;
-            return "Remaining health of " + enemyCharacter.toString() + " is " + remainingHealth;
+            return "Remaining health of " + enemyCharacter.getName() + " is " + remainingHealth;
         }
         else {
             int remainingHealth = playerCharacter.characterDefend(enemyCharacter.characterAttack());
             round = !round;
-            return "Remaining health of " + playerCharacter.toString() + " is " + remainingHealth;
+            return "Remaining health of " + playerCharacter.getName() + " is " + remainingHealth;
         }
 
     }

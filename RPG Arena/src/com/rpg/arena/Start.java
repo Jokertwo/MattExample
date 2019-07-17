@@ -1,23 +1,50 @@
 package com.rpg.arena;
 
+import java.util.Scanner;
+
 public class Start {
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
 
-        Character character1 = new Character("Pikachu", 50, 6, 4);
-        Character character2 = new Character("Charmander", 25, 3, 2);
+        XMLWriter.createXMLFile();
 
-        Weapon weapon1 = new Weapon("Tail Whip", 2, 1);
-        Weapon weapon2 = new Weapon("Fire Breath", 3, 3);
+        Scanner input = new Scanner(System.in);
 
-        character1.takeWeapon(Arm.RIGHT, weapon1);
-        character2.takeWeapon(Arm.LEFT, weapon2);
+        /*
+        //Build character 1
+        System.out.println("Define Character 1");
+        Character character1 = loadCharacter(input);
 
+        //Build character 2
+        System.out.println("Define Character 2");
+        Character character2 = loadCharacter(input);
+
+        //Build weapon and assign it to character 1 right hand
+        System.out.println("Define right hand weapon for " + character1.getName());
+        character1.takeWeapon(Arm.RIGHT, loadWeapon(input));
+
+        //Build weapon and assign it to character 1 left hand
+        System.out.println("Define left hand weapon for " + character1.getName());
+        character1.takeWeapon(Arm.LEFT, loadWeapon(input));
+
+        //Build weapon and assign it to character 2 right hand
+        System.out.println("Define right hand weapon for " + character2.getName());
+        character2.takeWeapon(Arm.RIGHT, loadWeapon(input));
+
+        //Build weapon and assign it to character 2 left hand
+        System.out.println("Define left hand weapon for " + character2.getName());
+        character2.takeWeapon(Arm.LEFT, loadWeapon(input));
+         */
+
+        //Init battlefield
         Battlefield battlefield = new Battlefield();
 
+        //Put characters in battlefield to die
         battlefield.beginFight(character1, character2);
 
-        System.out.println(runBattle(battlefield).nameToString() + " is the winner!");
+        //Print the result
+        System.out.println(runBattle(battlefield).getName() + " is the winner!");
+
     }
 
     public static Character runBattle(Battlefield battlefield) {
@@ -31,4 +58,40 @@ public class Start {
         return winner;
     }
 
+    public static Character loadCharacter(Scanner sc) {
+
+        System.out.println("Enter name for Character");
+        String charName = sc.nextLine();
+
+        System.out.println("Enter power for Character");
+        int attackPower = Integer.parseInt(sc.nextLine());
+
+        System.out.println("Enter defense for Character");
+        int defense = Integer.parseInt(sc.nextLine());
+
+        System.out.println("Enter health of Character");
+        int health = Integer.parseInt(sc.nextLine());
+
+        return new Character(charName, health, attackPower, defense);
+    }
+
+    public static Weapon loadWeapon(Scanner sc) {
+
+        System.out.println("Enter name for weapon");
+        String weaponName = sc.nextLine();
+
+        if(weaponName.trim().isEmpty()){
+            return null;
+        }
+
+        System.out.println("Enter power for Weapon");
+        int attackPower = Integer.parseInt(sc.nextLine());
+
+        System.out.println("Enter defense for Weapon");
+        int defense = Integer.parseInt(sc.nextLine());
+
+        return new Weapon(weaponName, attackPower, defense);
+    }
+
 }
+

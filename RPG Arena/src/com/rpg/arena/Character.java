@@ -20,6 +20,11 @@ public class Character {
         this.rightArm = new CharacterArm(Arm.RIGHT);
     }
 
+    public String getName(){
+        String name = characterName;
+        return characterName;
+    }
+
     boolean takeWeapon(Arm arm, Weapon weapon) {
 
         if(arm == rightArm.getArm()){
