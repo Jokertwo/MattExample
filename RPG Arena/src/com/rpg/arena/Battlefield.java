@@ -1,6 +1,6 @@
 package com.rpg.arena;
 
-public class Battlefield {
+public class Battlefield implements Battleground{
 
     Character playerCharacter;
     Character enemyCharacter;
@@ -22,14 +22,13 @@ public class Battlefield {
 
     public String getNextRound(){
 
-
         if(round == false){
-            int remainingHealth = enemyCharacter.characterDefend(playerCharacter.characterAttack());
+            int remainingHealth = enemyCharacter.characterDefend(playerCharacter.characterAttack() + getFirstCharAttackPar() - getSecondCharDefendPar());
             round = !round;
             return "Remaining health of " + enemyCharacter.getName() + " is " + remainingHealth;
         }
         else {
-            int remainingHealth = playerCharacter.characterDefend(enemyCharacter.characterAttack());
+            int remainingHealth = playerCharacter.characterDefend(enemyCharacter.characterAttack() + getSecondCharAttackPar() - getFirstCharDefendPar());
             round = !round;
             return "Remaining health of " + playerCharacter.getName() + " is " + remainingHealth;
         }
@@ -43,6 +42,22 @@ public class Battlefield {
         else {
             return enemyCharacter;
         }
+    }
+
+    public int getFirstCharAttackPar() {
+        return 0;
+    }
+
+    public int getFirstCharDefendPar() {
+        return 0;
+    }
+
+    public int getSecondCharAttackPar() {
+        return 0;
+    }
+
+    public int getSecondCharDefendPar() {
+        return 0;
     }
 
 }

@@ -6,30 +6,25 @@ import java.util.Scanner;
 
 public class Start {
 
-    public static boolean useXML;
-
     public static void main(String args[]) {
 
         Scanner input = null;
 
         if(args.length == 0){
-            useXML = false;
             input = new Scanner(System.in);
         }
         else {
             String argument1 = args[0];
-            useXML = true;
             File file = new File(argument1);
             try {
                 input = new Scanner(file);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            //XMLWriter.createXMLFile();
         }
 
         //Init battlefield
-        Battlefield battlefield = new Battlefield();
+        Swamp battlefield = new Swamp();
 
         //Put characters in battlefield to die
         InputCharacters characterInputs = new InputCharacters();
@@ -42,7 +37,7 @@ public class Start {
 
     }
 
-    public static Character runBattle(Battlefield battlefield) {
+    public static Character runBattle(Battleground battlefield) {
 
         while (battlefield.isStillRunning()){
             System.out.println(battlefield.getNextRound());

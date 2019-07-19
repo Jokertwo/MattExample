@@ -8,7 +8,6 @@ public class Character {
     private int defense;
     private CharacterArm leftArm;
     private CharacterArm rightArm;
-    private String name;
 
 
     public Character(String name, int health, int attack, int defense){
@@ -21,7 +20,6 @@ public class Character {
     }
 
     public String getName(){
-        String name = characterName;
         return characterName;
     }
 
@@ -42,10 +40,19 @@ public class Character {
         return false;
     }
 
-    int characterDefend(int enemyAttack) {
+    /**
+     *
+     * @param enemyAttack
+     * @return remainingHealth
+     */
+        int characterDefend(int enemyAttack) {
 
         int remainingHealth = characterHealth;
         int totalDefense = 0;
+
+        if(enemyAttack <= 0){
+            return  remainingHealth;
+        }
 
         if(leftArm.hasWeapon() == true){
             totalDefense = totalDefense + leftArm.getWeapon().getDefend();
@@ -59,6 +66,8 @@ public class Character {
         if(totalDefense < enemyAttack){
             remainingHealth = remainingHealth - (enemyAttack - totalDefense);
         }
+
+
         characterHealth = remainingHealth;
         return characterHealth;
     }
