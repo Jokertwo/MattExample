@@ -1,4 +1,6 @@
-package com.rpg.arena;
+package com.rpg.arena.battleground;
+
+import CharacterGenerator.Character;
 
 public class Battlefield implements Battleground{
 
@@ -58,6 +60,10 @@ public class Battlefield implements Battleground{
 
     public int getSecondCharDefendPar() {
         return 0;
+    }
+
+    public String getName() {
+        return "battlefield";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.rpg.arena;
+package com.rpg.arena.battleground;
 
 public class Swamp extends Battlefield {
 
@@ -10,5 +10,10 @@ public class Swamp extends Battlefield {
     @Override
     public int getFirstCharAttackPar() {
         return -5;
+    }
+
+    @Override
+    public String getName(){
+        return "Swamp";
     }
 }
