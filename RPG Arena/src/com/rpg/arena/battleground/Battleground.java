@@ -18,6 +18,8 @@ public interface Battleground {
      */
     String getNextRound();
 
+    Battleground getRandomBattleground();
+
     /**
      * Checks if any characters are alive
      * @return living Character

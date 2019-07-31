@@ -2,11 +2,13 @@ package com.rpg.arena.battleground;
 
 import CharacterGenerator.Character;
 
+import java.util.Random;
+
 public class Battlefield implements Battleground{
 
-    Character playerCharacter;
-    Character enemyCharacter;
-    boolean round = false;
+    private Character playerCharacter;
+    private Character enemyCharacter;
+    private boolean round = false;
 
     public void beginFight(Character playerCharacter, Character enemyCharacter) {
         this.playerCharacter = playerCharacter;
@@ -24,7 +26,7 @@ public class Battlefield implements Battleground{
 
     public String getNextRound(){
 
-        if(round == false){
+        if(!round){
             int remainingHealth = enemyCharacter.characterDefend(playerCharacter.characterAttack() + getFirstCharAttackPar() - getSecondCharDefendPar());
             round = !round;
             return "Remaining health of " + enemyCharacter.getName() + " is " + remainingHealth;
@@ -34,7 +36,20 @@ public class Battlefield implements Battleground{
             round = !round;
             return "Remaining health of " + playerCharacter.getName() + " is " + remainingHealth;
         }
+    }
 
+    public Battleground getRandomBattleground() {
+        Battleground swamp = new Swamp();
+        Battleground forest = new Forest();
+        Battleground ocean = new Ocean();
+
+        Battleground[] battlegrounds = {swamp, forest, ocean};
+        Random r = new Random();
+        int randomNumber = Math.abs(r.nextInt());
+
+        randomNumber = randomNumber % battlegrounds.length;
+
+        return battlegrounds[randomNumber];
     }
 
     public Character getWinner(){
